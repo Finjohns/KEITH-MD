@@ -283,7 +283,7 @@ if (autoreact === 'true') {
             return DateTime.now().setZone('Africa/Nairobi').toLocaleString(DateTime.TIME_SIMPLE);
         };
 
-        let message = `Holla, ${getGreeting()},\n\n╭═══『𝐊𝐞𝐢𝐭𝐡 𝐌𝐝 𝐢𝐬 𝐜𝐨𝐧𝐧𝐞𝐜𝐭𝐞𝐝』══⊷ \n`;
+        let message = `Holla, ${getGreeting()},\n\n╭═══『 𝐉𝚰𝚴𝐖𝚰𝚰𝐋 𝐌𝐝 𝐢𝐬 𝐜𝐨𝐧𝐧𝐞𝐜𝐭𝐞𝐝』══⊷ \n`;
 
         message += `║ ʙᴏᴛ ɴᴀᴍᴇ ${botname}\n`;
 message += `║ ᴍᴏᴅᴇ ${mode}\n`;
