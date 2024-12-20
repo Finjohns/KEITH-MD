@@ -1,5 +1,5 @@
 const events = process.env.EVENTS || 'false';
-const botname = process.env.BOTNAME || 'KEITH-MD';
+const botname = process.env.BOTNAME || 'JINWIIL-MD';
 
 const Events = async (client, keizzah) => {
     const Myself = await client.decodeJid(client.user.id);
@@ -15,7 +15,7 @@ const Events = async (client, keizzah) => {
             try {
                 dpuser = await client.profilePictureUrl(num, "image");
             } catch {
-                dpuser = "https://i.imgur.com/iEWHnOH.jpeg";
+                dpuser = "https://i.imgur.com/BLPOoXx.mp4";
             }
 
             if (keizzah.action == "add") {
