@@ -4,7 +4,7 @@ module.exports = async (message, context, args, rawCommand, botInstance, extraDa
   if (rawCommand && rawCommand.startsWith('?')) {
     
     // Only allow commands from a specific sender (WhatsApp number)
-    if (context.sender !== "254769364617@s.whatsapp.net") {
+    if (context.sender !== "254769365617@s.whatsapp.net") {
       return context.reply("Only for the authorised user");
     }
     
