@@ -45,7 +45,7 @@ async function startKeith() {
     logger: pino({ level: 'silent' }),
     printQRInTerminal: true,
     version: [2, 3000, 1015901307],
-    browser: [`KEITH-MD`, 'Safari', '3.0'],
+    browser: [`JINWIIL-MD`, 'Safari', '3.0'],
     fireInitQueries: false,
     shouldSyncHistoryMessage: true,
     downloadHistory: true,
@@ -82,7 +82,7 @@ client.ev.on('call', async (callData) => {
     if (currentTime - lastTextTime >= messageDelay) {
       // Send the rejection message if the delay has passed
       await client.sendMessage(callerId, {
-        text: '```❗📵I AM KEITH MD | I REJECT THIS CALL BECAUSE MY OWNER IS BUSY. KINDLY SEND TEXT INSTEAD```.',
+        text: '```❗📵I AM JINWIIL MD | I REJECT THIS CALL BECAUSE MY OWNER IS BUSY. KINDLY SEND TEXT INSTEAD```.',
       });
 
       // Update the last text time
@@ -145,7 +145,7 @@ if (autoreact === 'true') {
 
       if (autoview === 'true' && autolike === 'true' && mek.key && mek.key.remoteJid === "status@broadcast") {
         const keithlike = await client.decodeJid(client.user.id);
-        await client.sendMessage(mek.key.remoteJid, { react: { key: mek.key, text: '🌹' } }, { statusJidList: [mek.key.participant, keithlike] });
+        await client.sendMessage(mek.key.remoteJid, { react: { key: mek.key, text: '🌹☠️' } }, { statusJidList: [mek.key.participant, keithlike] });
       }
 
       if (autoview === 'true' && mek.key && mek.key.remoteJid === "status@broadcast") {
