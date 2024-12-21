@@ -1,5 +1,5 @@
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
-<h1 align="center"> 𝐊𝐄𝐈𝐓𝐇-𝐌𝐃 </h1>
+<h1 align="center">  𝐉𝚰𝚴𝐖𝚰𝚰𝐋-𝐌𝐃 </h1>
 
  
 <h1 align="center"> Survival is winning frankline everything else is bullshit,fairy tales spun by people afraid to look life in the eye,do whatever it takes kid ,,survive 😏🙏
@@ -7,8 +7,8 @@
 
 
 
-  <a href="https://ibb.co/N6NMDtn"><img src="https://i.imgur.com/XlQIFIF.jpeg" alt="01" border="0" /></a>                     
-<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
+  <a href="https://ibb.co/N6NMDtn"><img src="https://cdn.ironman.my.id/u/VXoPONF.jpeg" alt="01" border="0" /></a>                     
+<a><img src='https://i.imgur.com/BLPOoXx.mp4'/></a>
  
 
 <details>
@@ -24,7 +24,7 @@
 
   
 
-<a href="https://github.com/keithkeizzah/KEITH-MD/fork"><img src="https://img.shields.io/badge/CLICK%20HERE-purple" alt="FORK KEITH" width="150"></a>
+<a href="https://github.com/finjohns/KEITH-MD/fork"><img src="https://img.shields.io/badge/CLICK%20HERE-purple" alt="FORK KEITH" width="150"></a>
 
 
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
