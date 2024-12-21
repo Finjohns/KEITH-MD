@@ -8,7 +8,7 @@ module.exports = async (client, m, isBotAdmin, itsMe, isAdmin, Owner, body, anti
         if (message.id.startsWith("QUEENAMDI")) {
             // Send notification to the group that a bot message was detected
             const notification = {
-                text: "_Antibot detectected by Keith md ,,removal done_"
+                text: "_Antibot detectected by Jinwiil md ,,removal done_"
             };
 
             // Send notification message to the group
