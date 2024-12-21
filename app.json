@@ -1,10 +1,10 @@
 {
-  "name": "KEITH-MD",
+  "name": "JINWIIL-MD",
   "description": "This is a simple whatsapp bot built with nodejs and baileys with MD support.",
   "keywords": [
     "bot",
     "whatsapp",
-    "keith",
+    "Jinwiil",
     "whatsapp-stickers",
     "anime",
     "whatsapp-bot",
@@ -14,9 +14,9 @@
     "baileys-md",
     "md-bot"
   ],
-  "website": "https://github.com/Keithkeizzah/KEITH-MD2#readme",
-  "repository": "https://github.com/Keithkeizzah/KEITH-MD2.git",
-  "logo": "https://i.imgur.com/dAtHp2k.jpeg",
+  "website": "https://github.com/finjohns/KEITH-MD2#readme",
+  "repository": "https://github.com/finjohns/KEITH-MD2.git",
+  "logo": "https://files.catbox.moe/8zmaa3.jpg",
   "success_url": "/",
   "env": {
     "PREFIX": {
@@ -25,7 +25,7 @@
       "required": true
     },
     "DEV": {
-      "description": "Put any phone numbers you want to be bot owner without + or spaces \",\" Ex: 254748387615, 254796299159 ",
+      "description": "Put any phone numbers you want to be bot owner without + or spaces \",\" Ex: 254769365617, 254798149700 ",
       "required": false
     },
     "API": {
@@ -56,17 +56,17 @@
     },
     "STICKER_AUTHOR": {
       "description": "Put your sticker author data",
-      "value": "Keith",
+      "value": "Jinwiil",
       "required": false
     },
     "STICKER_PACKNAME": {
       "description": "Put your sticker packname data",
-      "value": "Keizzah",
+      "value": "Onginjo",
       "required": false
     },
     "BOTNAME": {
       "description": "Enter name for your bot,,you can change this.",
-      "value": "𝐊𝐄𝐈𝐓𝐇-𝐌𝐃",
+      "value": " 𝐉𝚰𝚴𝐖𝚰𝚰L-𝐌𝐃",
       "required": false
     },
     "GC_PRESENCE": {
