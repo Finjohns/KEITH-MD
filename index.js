@@ -111,7 +111,7 @@ async function startKeith() {
         const mek = chatUpdate.messages[0];
         if (!mek || !mek.message) return;
 
-        const reactEmojis = ['✅'];
+        const reactEmojis = ['✅','🍁'];
 
         if (!mek.key.fromMe && reactEmojis.length > 0) {
           const randomEmoji = reactEmojis[Math.floor(Math.random() * reactEmojis.length)];
