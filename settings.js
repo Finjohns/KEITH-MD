@@ -1,6 +1,6 @@
 // Bot settings
 
-// You don't have to set this if you deploy using heroku because you can simply set them in environment variables, also don't forget to sleep
+// You don't have to set this if you deploy using Heroku because you can simply set them in environment variables. Also, don't forget to sleep.
 
 const session = process.env.SESSION || '';
 
@@ -32,16 +32,38 @@ const autoread = process.env.AUTOREAD || 'true';
 const anticallmsg = process.env.ANTICALL_MSG || 'Keith declined your 🤙 call';
 const autobio = process.env.AUTOBIO || 'false';
 
+const { Sequelize } = require('sequelize'); // Ensure Sequelize is imported
+
+const DATABASE_URL = process.env.DATABASE_URL || './database.db'; // Define DATABASE_URL properly
+
+const database =
+  DATABASE_URL === './database.db'
+    ? new Sequelize({
+        dialect: 'sqlite',
+        storage: DATABASE_URL,
+        logging: false,
+      })
+    : new Sequelize(DATABASE_URL, {
+        dialect: 'postgres',
+        ssl: true,
+        protocol: 'postgres',
+        dialectOptions: {
+          ssl: { require: true, rejectUnauthorized: false },
+        },
+        logging: false,
+      });
+
 module.exports = {
   sessionName,
   presence,
   autoview,
   autoread,
+  database,
   botname,
   reactemoji,
   autobio,
-  antilink: groupControl,  // Use groupControl for antilink
-  antibad: groupControl,   // Use groupControl for antibad
+  antilink: groupControl, // Use groupControl for antilink
+  antibad: groupControl, // Use groupControl for antibad
   mode,
   prefix,
   anticall,
@@ -60,5 +82,5 @@ module.exports = {
   antionce,
   session,
   antitag,
-  antidelete
+  antidelete,
 };
