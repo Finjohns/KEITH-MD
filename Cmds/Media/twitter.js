@@ -4,58 +4,30 @@ module.exports = async (context) => {
     try {
         // Validate input
         if (!text) return await sendReply(client, m, '🐦 Please provide a Twitter/X URL\nExample: *twitter https://x.com/...*');
-        
+
         const tweetUrl = text.match(/https?:\/\/(x\.com|twitter\.com)\/\w+\/status\/\d+/i)?.[0];
         if (!tweetUrl) return await sendReply(client, m, '❌ Invalid Twitter/X URL');
 
-        // API endpoints with priority
-        const APIs = [
-            'https://api.ryzendesu.vip/api/downloader/twitter?url=',
-            'https://apis.davidcyriltech.my.id/twitter?url=',
-            'https://api.giftedtech.my.id/api/download/twitter?apikey=gifted&url='
-        ];
+        // Your custom API endpoint
+        const apiEndpoint = 'https://finalapi2-d20c8c9f4074.herokuapp.com/download/twitter?url=';
 
-        let videoUrl, metadata;
-        for (const api of APIs) {
-            try {
-                const response = await fetch(api + encodeURIComponent(tweetUrl));
-                const data = await response.json();
-                
-                if (api.includes('ryzendesu') && data?.media?.length) {
-                    const bestQuality = data.media.reduce((max, current) => 
-                        parseInt(current.quality) > parseInt(max.quality) ? current : max
-                    );
-                    videoUrl = bestQuality.url;
-                    metadata = { description: 'Twitter Video' };
-                    break;
-                } 
-                else if (api.includes('davidcyriltech') && data?.video_hd) {
-                    videoUrl = data.video_hd;
-                    metadata = {
-                        description: data.description,
-                        thumbnail: data.thumbnail
-                    };
-                    break;
-                }
-                else if (api.includes('giftedtech') && data?.result?.downloads?.length) {
-                    videoUrl = data.result.downloads[0].url;
-                    metadata = { description: data.result.title };
-                    break;
-                }
-            } catch (error) {
-                console.error(`API ${api} failed:`, error);
-                continue;
-            }
-        }
+        // Fetch data from your API
+        const response = await fetch(apiEndpoint + encodeURIComponent(tweetUrl));
+        const apiResponse = await response.json();
 
-        if (!videoUrl) throw new Error('No video found');
+        // Handle API response
+        if (!apiResponse.status) throw new Error('API returned an error');
+
+        const { video_hd: videoUrl, desc: description, thumb: thumbnail } = apiResponse.result;
+
+        if (!videoUrl) throw new Error('No video URL found');
 
         // Build caption
         const caption = `🐦 *Twitter Video* - ${botname}\n\n` +
-                        `${metadata?.description || 'Downloaded video'}\n\n` +
+                        `📜 *Description:* ${description || 'No description'}\n` +
                         `_Powered by ${botname}_`;
 
-        // Send media
+        // Send video
         await sendMediaMessage(client, m, {
             video: { url: videoUrl },
             caption: caption,

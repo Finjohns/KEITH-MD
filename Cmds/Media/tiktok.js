@@ -6,56 +6,30 @@ module.exports = async (context) => {
         if (!text) return await sendReply(client, m, '🎵 Please provide a TikTok link\nExample: *tiktok https://vm.tiktok.com/...*');
         if (!text.match(/tiktok\.com|vt\.tiktok\.com/)) return await sendReply(client, m, '❌ Invalid TikTok link');
 
-        // API endpoints with fallbacks
-        const APIs = [
-            'https://api.agatz.xyz/api/tiktok?url=',
-            'https://api.giftedtech.my.id/api/download/tiktokdlv3?apikey=gifted&url=',
-            'https://apis.davidcyriltech.my.id/download/tiktok?url='
-        ];
+        // Your custom API endpoin
+        const apiEndpoint = 'https://apis-keith.vercel.app/download/tiktokdl?url=';
 
-        let apiResponse;
-        for (const api of APIs) {
-            try {
-                const response = await fetch(api + encodeURIComponent(text));
-                const data = await response.json();
-                
-                if (api.includes('agatz.xyz') && data?.data?.data?.[0]?.url) {
-                    apiResponse = data;
-                    break;
-                } else if ((api.includes('giftedtech') || api.includes('davidcyriltech')) && data?.result?.url) {
-                    apiResponse = data;
-                    break;
-                }
-            } catch (error) {
-                console.error(`API ${api} failed:`, error);
-                continue;
-            }
-        }
+        // Fetch data from your API
+        const response = await fetch(apiEndpoint + encodeURIComponent(text));
+        const apiResponse = await response.json();
 
-        if (!apiResponse) throw new Error('All APIs failed');
+        // Handle API response
+        if (!apiResponse.status) throw new Error('API returned an error');
 
-        // Extract video URL
-        const videoUrl = apiResponse.data?.data?.[1]?.url ||  // agatz no watermark
-                        apiResponse.result?.url ||           // other APIs
-                        apiResponse.data?.data?.[0]?.url;    // fallback
+        const { nowm: videoUrl, title, caption, thumbnail } = apiResponse.result;
 
         if (!videoUrl) throw new Error('No video URL found');
 
         // Build caption
-        const meta = apiResponse.data?.data || {};
-        const caption = `🎵 *TikTok Downloader* - ${botname}\n\n` +
-                        `📌 *Title:* ${meta.title || 'No title'}\n` +
-                        `👤 *Author:* ${meta.author?.nickname || 'Unknown'}\n` +
-                        `🎶 *Music:* ${meta.music_info?.title || 'No music info'}\n` +
-                        `❤️ *Likes:* ${meta.stats?.likes || 'N/A'} | 💬 *Comments:* ${meta.stats?.comment || 'N/A'}\n` +
-                        `⏱️ *Duration:* ${meta.duration || 'N/A'}\n` +
-                        `📅 *Uploaded:* ${meta.taken_at || 'Unknown date'}\n\n` +
-                        `_Powered by ${botname}_`;
+        const videoCaption = `🎵 *TikTok Downloader* - ${botname}\n\n` +
+                             `📌 *Title:* ${title || 'No title'}\n` +
+                             `📝 *Caption:* ${caption || 'No caption'}\n` +
+                             `_Powered by ${botname}_`;
 
         // Send video
         await sendMediaMessage(client, m, {
             video: { url: videoUrl },
-            caption: caption,
+            caption: videoCaption,
             gifPlayback: false
         });
 

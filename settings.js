@@ -1,6 +1,4 @@
-// Bot settings
-
-// You don't have to set this if you deploy using Heroku because you can simply set them in environment variables. Also, don't forget to sleep.
+/*I wrote a script to automate my job. Now I just sit back and watch Netflix while it runs.*/
 
 const session = process.env.SESSION || '';
 
@@ -25,10 +23,20 @@ const antitag = process.env.ANTITAG || 'true';
 const groupControl = process.env.GROUP_CONTROL || 'true';
 const anticall = process.env.ANTICALL || 'true';
 const antidelete = process.env.ANTIDELETE || 'true';
+const antibot = process.env.ANTIBOT || 'true';
 const autoview = process.env.AUTOVIEW_STATUS || 'true';
 const autolike = process.env.AUTOLIKE_STATUS || 'true';
+const chatbot = process.env.CHATBOT || 'true';
+const greet = process.env.GREET || 'true';
+const autodownloadstatus = process.env.AUTODOWNLOAD_STATUS || 'true';
+const autostatusreply = process.env.AUTOREPLY_STATUS || 'true';
+const autostatusmsg = process.env.AUTOSTATUS_MSG || 'viewed';
+const greetmsg = process.env.GREET_MSG || 'text back later';
 const timezone = process.env.TIMEZONE || 'Africa/Nairobi';
 const autoread = process.env.AUTOREAD || 'true';
+const permit = process.env.PM_PERMIT || 'true';
+const voicechatbot = process.env.VOICECHATBOT || 'true';
+const voicechatbot2 = process.env.VOICECHATBOT2 || 'true';
 const anticallmsg = process.env.ANTICALL_MSG || 'Keith declined your 🤙 call';
 const autobio = process.env.AUTOBIO || 'false';
 
@@ -59,7 +67,10 @@ module.exports = {
   autoview,
   autoread,
   database,
+  autodownloadstatus,
   botname,
+  voicechatbot,
+  voicechatbot2,
   reactemoji,
   autobio,
   antilink: groupControl, // Use groupControl for antilink
@@ -67,9 +78,12 @@ module.exports = {
   mode,
   prefix,
   anticall,
+  autostatusreply,
+  autostatusmsg,
   autolike,
   anticallmsg,
   mycode,
+  chatbot,
   author,
   herokuAppname,
   herokuapikey,
@@ -77,8 +91,11 @@ module.exports = {
   gurl,
   packname,
   dev,
+  greet,
+  greetmsg,
   DevKeith,
   gcpresence,
+  permit,
   antionce,
   session,
   antitag,

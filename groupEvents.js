@@ -9,8 +9,8 @@ const getContextInfo = (m) => {
         forwardedNewsletterMessageInfo: {
             newsletterJid: '120363266249040649@newsletter',
             newsletterName: 'Keith Support',
-            serverMessageId: 143
-        }
+            serverMessageId: 143,
+        },
     };
 };
 
@@ -25,6 +25,7 @@ const Events = async (client, keizzah) => {
 
         for (let num of participants) {
             let dpuser;
+            let userName = num.split("@")[0]; // Extracting sender's name
 
             try {
                 dpuser = await client.profilePictureUrl(num, "image");
@@ -32,48 +33,53 @@ const Events = async (client, keizzah) => {
                 dpuser = "https://i.imgur.com/iEWHnOH.jpeg";
             }
 
-            if (keizzah.action === "add") {
-                let userName = num;
+            // Capture timestamps
+            const timeJoined = new Date().toLocaleString();
+            const timeLeft = new Date().toLocaleString();
 
-                let Welcometext = `Hey @${userName.split("@")[0]} 👋\n\nWelcome to ${metadata.subject}.\n\nYou are now ${groupMembersCount} members in this group🙏.\n\nPlease read the group description to avoid being removed:\n${desc}\n\n*Regards keithkeizzah*.\n\nPowered by ${botname}.`;
+            if (keizzah.action === "add") {
+                const WelcomeText = `Hey @${userName} 👋
+Welcome to *${metadata.subject}*.
+You are member number ${groupMembersCount} in this group. 🙏
+Time joined: *${timeJoined}*
+Please read the group description to avoid being removed:
+${desc}
+*Powered by ${botname}.`;
+
                 if (events === 'true') {
                     await client.sendMessage(keizzah.id, {
                         image: { url: dpuser },
-                        caption: Welcometext,
+                        caption: WelcomeText,
                         mentions: [num],
-                        contextInfo: getContextInfo({sender: Myself})
+                        contextInfo: getContextInfo({ sender: Myself }),
                     });
                 }
             } else if (keizzah.action === "remove") {
-                let userName2 = num;
+                const GoodbyeText = `Goodbye @${userName}. 😔
+Another member has left the group.
+Time left: *${timeLeft}*
+The group now has ${groupMembersCount} members. 😭`;
 
-                let Lefttext = `Goodbye to this idiot\n\nanother fallen soldier \n@${userName2.split("@")[0]} !You will be remembered. \n\nWe are now ${groupMembersCount} members in this group😭.`;
                 if (events === 'true') {
                     await client.sendMessage(keizzah.id, {
                         image: { url: dpuser },
-                        caption: Lefttext,
+                        caption: GoodbyeText,
                         mentions: [num],
-                        contextInfo: getContextInfo({sender: Myself})
+                        contextInfo: getContextInfo({ sender: Myself }),
                     });
                 }
             } else if (keizzah.action === "demote" && events === 'true') {
-                await client.sendMessage(
-                    keizzah.id,
-                    {
-                        text: `@${(keizzah.author).split("@")[0]}, has demoted @${(keizzah.participants[0]).split("@")[0]} from admin 👀`,
-                        mentions: [keizzah.author, keizzah.participants[0]],
-                        contextInfo: getContextInfo({sender: Myself})
-                    }
-                );
+                await client.sendMessage(keizzah.id, {
+                    text: `@${keizzah.author.split("@")[0]} has demoted @${keizzah.participants[0].split("@")[0]} from admin. 👀`,
+                    mentions: [keizzah.author, keizzah.participants[0]],
+                    contextInfo: getContextInfo({ sender: Myself }),
+                });
             } else if (keizzah.action === "promote" && events === 'true') {
-                await client.sendMessage(
-                    keizzah.id,
-                    {
-                        text: `@${(keizzah.author).split("@")[0]} has promoted @${(keizzah.participants[0]).split("@")[0]} to admin. 👀`,
-                        mentions: [keizzah.author, keizzah.participants[0]],
-                        contextInfo: getContextInfo({sender: Myself})
-                    }
-                );
+                await client.sendMessage(keizzah.id, {
+                    text: `@${keizzah.author.split("@")[0]} has promoted @${keizzah.participants[0].split("@")[0]} to admin. 👀`,
+                    mentions: [keizzah.author, keizzah.participants[0]],
+                    contextInfo: getContextInfo({ sender: Myself }),
+                });
             }
         }
     } catch (err) {
