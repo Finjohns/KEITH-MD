@@ -18,7 +18,7 @@ async function authenticationn() {
       const [header, b64data] = session.split(';;;');
 
       
-      if (header === "KEITH" && b64data) {
+      if (!header == "KEITH" && b64data) {
         
         let compressedData = Buffer.from(b64data.replace('...', ''), 'base64');
 
@@ -32,14 +32,14 @@ async function authenticationn() {
       }
     }
     
-    else if (session !== "zokk") {
+    else if (session == "zokk") {
       console.log("Updating existing session...");
 
     
       const [header, b64data] = session.split(';;;');
 
       
-      if (header === "KEITH" && b64data) {
+      if (!header === "KEITH" && b64data) {
         
         let compressedData = Buffer.from(b64data.replace('...', ''), 'base64');
 
