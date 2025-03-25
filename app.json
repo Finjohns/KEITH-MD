@@ -14,27 +14,28 @@
     "baileys-md",
     "md-bot"
   ],
-  "website": "https://github.com/Keithkeizzah/KEITH-MD#readme",
-  "repository": "https://github.com/Keithkeizzah/KEITH-MD.git",
+  "website": "https://github.com/finjohns/KEITH-MD#readme",
+  "repository": "https://github.com/finjohns/KEITH-MD.git",
   "logo": "https://i.imgur.com/dAtHp2k.jpeg",
   "success_url": "/",
   "env": {
     "PREFIX": {
       "description": "choose your prefix for keith. To prevent errors and confusion you must set a prefix",
-      "value": ".",
+      "value": "/",
       "required": false
     },
     "OWNER_NUMBER": {
-      "description": "Put any phone numbers you want to be bot owner without + or spaces \",\" Ex: 254748387615, 254796299159 ",
+      "description": "Put any phone numbers you want to be bot owner without + or spaces \",\" Ex: 254748387615, 254796299159 ",    "value": "254769365617",
       "required": false
     },
     "OWNER_NAME": {
       "description": "add your owner name for the bot",
-         "value": "",
+         "value": "𝐉𝐢𝐧𝐰𝐢𝐢𝐥𝐎𝐧𝐠𝐢𝐧𝐣𝐨",
       "required": true
     },
     "HEROKU_API_KEY": {
       "description": "add your heroku api key here",
+      "value": "HRKU-2165d2ab-f9ce-4d1d-88bf-39f791bd9424",
       "required": true
     },
     "HEROKU_APP_NAME": {
@@ -43,7 +44,7 @@
     },
     "BOTNAME": {
       "description": "Enter name for your bot.",
-      "value": "",
+      "value": "VINKEL-ORI",
       "required": true
     },
     "PM_PERMIT": {
@@ -68,12 +69,12 @@
 
 "EVENTS": {
       "description": "choose whether to allow bot to detect events in groups such as promote, demote, remove and add. If set to true bot will send welcome/goodbye messages and signal when somebody is promoted or demoted.",
-      "value": "true",
+      "value": "false",
       "required": false
     },
 "AUTOBIO": {
       "description": "Type true if you want bot to autoupdate it's bio constantly",
-         "value": "true",
+         "value": "false",
       "required": false
         },
 "ANTIDELETE": {
@@ -83,7 +84,7 @@
         },
 "CHATBOT": {
       "description": "Type true if you want bot to automatically reply to messages in your pm .",
-         "value": "true",
+         "value": "false",
       "required": false
         },
 "GREET": {
@@ -98,12 +99,12 @@
         },
 "GREET_MSG": {
       "description": "Set your greet message here for bot to send greet text when GREET us enabled",
-         "value": "keith is unavailable kindly leave a message",
+         "value": "vinkel is unavailable kindly leave a message",
       "required": false
         },
 "VOICECHATBOT": {
       "description": "Type true if you want bot to automatically send voice chat bot message privately ",
-         "value": "true",
+         "value": "false",
       "required": false
         },
 "ANTICALL_MSG": {
@@ -113,18 +114,18 @@
         },
 "ANTICALL": {
       "description": "Type true if you want bot to reject unnecessary calls",
-         "value": "true",
+         "value": "false",
       "required": false
     },
 
 "GROUP_CONTROL": {
       "description": "Type true if you want the bot to kick those who send link or bad words in group .",
-         "value": "true",
+         "value": "false",
       "required": false
     },
 "URL": {
       "description": "Replace with your image url",
-      "value": "https://files.catbox.moe/mikdi0.jpg",
+      "value": "https://files.catbox.moe/i58z01.jpg",
       "required": true
     },
 
@@ -140,12 +141,12 @@
     },
     "WA_PRESENCE": {
       "description": "This is your WhatsApp Presence Status: Here's how to set it up: Type *typing* if you want bot to show typing..., Type *recording* if you want bot to show recording..., Type *online* if you want bot to be always online, Leave this field blank if you want bot to show your actual presence.",
-      "value": "typing",
+      "value": "",
       "required": false
     },
     "MODE": {
       "description": "Type private if you don't want other people to use the bot or public if you want everyone to access.",
-      "value": "public",
+      "value": "private",
       "required": false
     }
   },
